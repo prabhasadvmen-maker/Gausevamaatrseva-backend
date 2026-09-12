@@ -1,0 +1,36 @@
+# Render Deployment Blueprint for Gouseva Maatra Seva Backend
+services:
+  - type: web
+    name: gouseva-maatra-seva-backend
+    env: node
+    region: singapore
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        value: superadmin@gousevamaatraseva.com
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: APITXT_API_KEY
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_WEBHOOK_SECRET
+        sync: false
+      - key: MERCHANT_NAME
+        value: Gouseva Maatra Seva
+      - key: MERCHANT_LOGO
+        value: https://gousevamaatraseva.com/logo.png
+      - key: ENVIRONMENT
+        value: production
