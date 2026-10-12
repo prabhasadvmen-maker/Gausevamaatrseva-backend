@@ -40,6 +40,14 @@ app.listen(PORT, async () => {
   console.log(`🔒 Admin Login Password: ${ADMIN_PASSWORD}`);
   console.log(`=================================================`);
   await connectDB();
+
+  // Keep-alive: ping self every 30s to prevent Render free tier sleep
+  if (process.env.NODE_ENV === 'production') {
+    const SELF_URL = process.env.RENDER_EXTERNAL_URL || 'https://gausevamaatrseva-backend.onrender.com';
+    setInterval(() => {
+      fetch(`${SELF_URL}/`).catch(() => {});
+    }, 30 * 1000);
+  }
 });
 
 module.exports = app;
