@@ -56,8 +56,10 @@ const sendOtp = async (req, res) => {
 
     otpSessions.set(sessionId, sessionData);
 
-    // Send SMS via APITxT
-    await sendSMSOTP(cleanPhone, generatedOtp);
+    // Skip SMS for test number
+    if (cleanPhone !== '5555555555') {
+      await sendSMSOTP(cleanPhone, generatedOtp);
+    }
 
     return res.status(200).json({
       success: true,
@@ -121,7 +123,8 @@ const verifyOtp = (req, res) => {
     }
 
     // Check OTP (accepts real generated OTP, or standard test OTPs like 123456 / 482910 for dev test flexibility)
-    const isValidOtp = session.otp === otp.toString() || otp.toString() === '123456' || otp.toString() === '482910';
+    const isTestNumber = session.phone === '5555555555';
+    const isValidOtp = session.otp === otp.toString() || otp.toString() === '482910' || (isTestNumber && otp.toString() === '123456');
 
     if (!isValidOtp) {
       session.attempts += 1;
