@@ -6,8 +6,63 @@
 // OTP Sessions Map (session_id -> session object)
 const otpSessions = new Map();
 
-// Users Map (phone -> user object) - Starts clean
-const users = new Map();
+// Users Map (phone -> user object) - Starts with test users
+const users = new Map([
+  [
+    '5555555555',
+    {
+      id: 'usr_5555555555',
+      phone: '5555555555',
+      country_code: '+91',
+      name: 'Test Donor 1',
+      email: 'donor1@gousevamaatraseva.com',
+      pan: '',
+      address: {
+        line1: 'Test Address',
+        city: 'Gurugram',
+        state: 'Haryana',
+        pincode: '122001'
+      },
+      createdAt: new Date().toISOString()
+    }
+  ],
+  [
+    '9876543210',
+    {
+      id: 'usr_9876543210',
+      phone: '9876543210',
+      country_code: '+91',
+      name: 'Rajesh Kumar',
+      email: 'rajesh@example.com',
+      pan: '',
+      address: {
+        line1: 'Sector 53',
+        city: 'Gurugram',
+        state: 'Haryana',
+        pincode: '122003'
+      },
+      createdAt: new Date().toISOString()
+    }
+  ],
+  [
+    '8765432109',
+    {
+      id: 'usr_8765432109',
+      phone: '8765432109',
+      country_code: '+91',
+      name: 'Priya Singh',
+      email: 'priya@example.com',
+      pan: '',
+      address: {
+        line1: 'Sector 45',
+        city: 'Noida',
+        state: 'Uttar Pradesh',
+        pincode: '201301'
+      },
+      createdAt: new Date().toISOString()
+    }
+  ]
+]);
 
 // Official Seva Catalog
 const sevasCatalog = [
@@ -61,8 +116,85 @@ const sevasCatalog = [
   }
 ];
 
-// Live Donations Array - Starts clean
-const donations = [];
+// Live Donations Array - Starts with test donations
+const donations = [
+  {
+    donation_id: 'TXN-TEST-001',
+    razorpay_order_id: 'order_test_001',
+    razorpay_payment_id: 'pay_test_001',
+    user_id: 'usr_5555555555',
+    donor_name: 'Test Donor 1',
+    donor_phone: '5555555555',
+    donor_email: 'donor1@gousevamaatraseva.com',
+    pan_number: '',
+    is_anonymous: false,
+    seva_id: 'seva_gaush_bhojan',
+    seva_title: 'Daily Green Fodder & Feed Seva',
+    amount: 1100,
+    currency: 'INR',
+    status: 'COMPLETED',
+    receipt_number: 'GMS-2026-001',
+    receipt_url: null,
+    created_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    donation_id: 'TXN-TEST-002',
+    razorpay_order_id: 'order_test_002',
+    razorpay_payment_id: 'pay_test_002',
+    user_id: 'usr_9876543210',
+    donor_name: 'Rajesh Kumar',
+    donor_phone: '9876543210',
+    donor_email: 'rajesh@example.com',
+    pan_number: '',
+    is_anonymous: false,
+    seva_id: 'seva_medical',
+    seva_title: 'Emergency Medical & Ambulance Seva',
+    amount: 2100,
+    currency: 'INR',
+    status: 'COMPLETED',
+    receipt_number: 'GMS-2026-002',
+    receipt_url: null,
+    created_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString()
+  },
+  {
+    donation_id: 'TXN-TEST-003',
+    razorpay_order_id: 'order_test_003',
+    razorpay_payment_id: 'pay_test_003',
+    user_id: 'usr_8765432109',
+    donor_name: 'Priya Singh',
+    donor_phone: '8765432109',
+    donor_email: 'priya@example.com',
+    pan_number: '',
+    is_anonymous: false,
+    seva_id: 'seva_sanctuary',
+    seva_title: 'Sanctuary Shed & Shelter Seva',
+    amount: 5100,
+    currency: 'INR',
+    status: 'COMPLETED',
+    receipt_number: 'GMS-2026-003',
+    receipt_url: null,
+    created_at: new Date().toISOString()
+  },
+  {
+    donation_id: 'TXN-TEST-004',
+    razorpay_order_id: 'order_test_004',
+    razorpay_payment_id: 'pay_test_004',
+    user_id: 'usr_5555555555',
+    donor_name: 'Test Donor 1',
+    donor_phone: '5555555555',
+    donor_email: 'donor1@gousevamaatraseva.com',
+    pan_number: '',
+    is_anonymous: false,
+    seva_id: 'seva_vriddh_gausammardhan',
+    seva_title: 'Elderly & Disabled Cow Protection',
+    amount: 2100,
+    currency: 'INR',
+    status: 'COMPLETED',
+    receipt_number: 'GMS-2026-004',
+    receipt_url: null,
+    created_at: new Date().toISOString()
+  }
+];
 
 // Dashboard Banners & Impact Settings
 const dashboardData = {
